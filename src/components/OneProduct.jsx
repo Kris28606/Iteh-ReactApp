@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function OneProduct({ product, onAdd, inCart }) {
+function OneProduct({ product, onAdd, inCart , onRemove}) {
   
  
   return (
@@ -26,7 +26,13 @@ function OneProduct({ product, onAdd, inCart }) {
           
         </>
       ) : (
+        <div className="card-body">
         <h4>Količina: {product.amount}</h4>
+        <button
+            className="btn"
+            onClick={() => onRemove(product.title, product.id)}
+          > OBRISI </button>
+        </div>
       )}
     </div>
   );

@@ -2,7 +2,7 @@
 import React from "react";
 import OneProduct from "./OneProduct.jsx";
 
-const Products = ({ products, onAdd }) => {
+const Products = ({ products, onAdd, onRemove }) => {
   
 
   return (
@@ -13,7 +13,7 @@ const Products = ({ products, onAdd }) => {
     </div>
     <div className="all-products">
       {products.map((prod) => (
-        <OneProduct product={prod} key={prod.id} onAdd={onAdd} inCart={1} />
+        <OneProduct product={prod} key={prod.id} onAdd={onAdd} inCart={1} onRemove={onRemove}/>
       ))}
       
     </div>

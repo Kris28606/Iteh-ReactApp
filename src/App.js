@@ -99,17 +99,35 @@ function App() {
       console.log(prod.amount);
     });
     filterCart();
-    
   }
+
+  function removeProduct(title, id) {
+    
+    cartProducts.forEach((prod)=> {
+      if(prod.id===id) {
+        if(prod.amount>0) {
+          setCartNum(cartNum-1);
+          prod.amount--;
+          if(prod.amount==0) {
+            filterCart();
+          }
+        }
+        else {
+          filterCart();
+        }
+      }
+    })
+  }
+
   return (
     <BrowserRouter className="App">
       <NavBar cartNum={cartNum}></NavBar>
       <Routes>
         <Route
           path="/"
-          element={<Products products={products} onAdd={addProduct} />}
+          element={<Products products={products} onAdd={addProduct} onRemove={removeProduct} />}
         />
-        <Route path="/cart" element={<Cart products={cartProducts} />} />
+        <Route path="/cart" element={<Cart products={cartProducts} onRemove={removeProduct} />} />
       </Routes>
     </BrowserRouter>
   );
